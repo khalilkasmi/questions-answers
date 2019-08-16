@@ -1,0 +1,14 @@
+@layout('layouts.main')
+
+@section('title')
+  add a question page
+@endsection
+
+@section('content')
+  <h1>form for search</h1>
+  <form action="{{ route('/question/store') }}" method="post">
+    {{ csrfField() }}
+      <input type="text" name="question_text">
+      <button type="submit">ask</button>
+    </form>
+@endsection

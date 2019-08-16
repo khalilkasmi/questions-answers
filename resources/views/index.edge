@@ -1,0 +1,21 @@
+@layout('layouts.main')
+
+@section('title')
+  home page
+@endsection
+
+@section('content')
+  <h1>form for search</h1>
+  <form action="{{ route('/search') }}" method="post">
+    {{ csrfField() }}
+      <input type="text" name="search_text">
+      <button type="submit">go</button>
+    </form>
+    @if(questions.length !== 0)
+   
+    @each(item in questions)
+    <h1>{{item.question_text}}</h1>
+    <a href="/question/{{item.id}}/answers">answers</a>
+    @endeach
+    @endif
+@endsection

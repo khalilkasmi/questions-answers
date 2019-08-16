@@ -1,0 +1,48 @@
+@layout('layouts.main')
+
+@section('title')
+  answers
+@endsection
+
+@section('content')
+  <h1>question's answers</h1>
+  <h3>questoin : </h3>
+  <h2>{{question.question_text}} </h2>
+  <h3>answers</h3>
+  <ul>
+      @if(question.user_id !== auth.user.id)
+        @if(!this_user_id)
+        <h6>add one :</h6>
+        <form action="/question/{{question.id}}}/answer/add" method="POST">
+          {{ csrfField() }}
+          <input type="text" name="answer_text" placeholder="your answer here">
+          <button type="submit">answer</button>
+        </form>
+        @endif
+      @endif
+
+
+    @if(answers.length === 0)
+
+    <p>no answers found !</p> 
+
+    @else
+
+    @each(item in answers)
+    <li>{{item.answer.answer_text}}} </li>
+    <span>{{item.date}}</span>
+    <span>by : <small>{{item.user.username}}</small></span><br>
+    <span>votes: {{ item.vote_count }}</span>
+
+      @if(!item.isExitsUser)
+      <form action="{{route('/vote/add')}}" method="POST">
+        {{ csrfField() }}
+        <input type="hidden" value="{{item.answer.id}}" name="answer_id">
+        <input type="hidden" value="{{item.user.id}}" name="user_id">
+        <button type="submit">+</button>
+        </form>
+      @endif
+    @endeach
+    @endif
+  </ul>
+@endsection

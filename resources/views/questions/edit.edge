@@ -1,0 +1,14 @@
+@layout('layouts.main')
+
+@section('title')
+  edit a question page
+@endsection
+
+@section('content')
+  <h1>form for search</h1>
+  <form action="{{ route('questionController.update',{id: question.id}) }}" method="post">
+    {{ csrfField() }}
+  <input type="text" name="question_text" value="{{question.question_text}}">
+      <button type="submit">ask</button>
+    </form>
+@endsection

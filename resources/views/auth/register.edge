@@ -1,0 +1,17 @@
+@layout('layouts.main')
+
+@section('title')
+  register page
+@endsection
+
+@section('content')
+  <h1>form for register</h1>
+  <form action="{{ route('/register') }}" method="POST">
+    {{ csrfField() }}
+    <input type="username" name="username" placeholder="username here">
+    <input type="email" name="email" placeholder="email here">
+    <input type="password" name="password" placeholder="**********">
+    <button type="submit">go</button>
+    <a href="/login">or login here</a>
+  </form>
+@endsection

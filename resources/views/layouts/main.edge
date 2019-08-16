@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        @!section('title')
+    </title>
+    @!section('style')
+</head>
+<body>
+    <!-- nav bar -->
+
+    <header>
+        <nav>
+            <div>
+                <ul>
+                    <li><a href="/">logo</a></li>
+                   @loggedIn
+                <li>{{ auth.user.username }}</li>
+                   <li><a href="/question/add">add a question</a></li>
+                   <li><a href="/myQuestions">my questions</a></li>
+                   <li><a href="/logout">logout</a></li> 
+                   @else
+                    <li><a href="/login">login</a></li>
+                    <li><a href="/register">register</a></li>
+                    @endloggedIn
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- end nav bar-->
+
+    @!section('content')
+
+    <footer>
+        &copy; khalil kasmi 2019
+    </footer>
+</body>
+</html>

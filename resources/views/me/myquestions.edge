@@ -1,0 +1,21 @@
+@layout('layouts.main')
+
+@section('title')
+  home page
+@endsection
+
+@section('content')
+  <h1>my questions</h1>
+    @if(questions.length === 0)
+    <h1>nothing found</h1>
+    @else
+    @each(item in questions)
+    <h1>{{item.question_text}}</h1>
+    <a href="/question/{{item.id}}/answers">answers</a>
+    <a href="/question/edit/{{item.id}}">edit</a>
+    <a href="/question/delete/{{item.id}}">delete</a>
+
+    
+    @endeach
+    @endif
+@endsection
